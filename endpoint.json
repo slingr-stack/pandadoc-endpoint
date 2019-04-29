@@ -1,0 +1,94 @@
+{
+    "label": "PandaDoc",
+    "name": "pandadoc",
+    "apiVersion": "v1",
+    "internal": false,
+    "configurationType": "GLOBAL",
+    "deployment": {
+        "profiles":[
+            {
+                "name": "default",
+                "label": "Default",
+                "memory": 256,
+                "description": "Default configuration"
+            }
+        ],
+        "allowMultipleInstances": true
+    },
+    "icon48": "https://storage.googleapis.com/static.slingrs.io/platform/endpoints/pandadoc.png",
+    "configurationHelpUrl": "/endpoints_pandadoc.html#configuration",
+    "status": "ACTIVE",
+    "stores": [],
+    "events": [
+        {
+            "label": "Webhook",
+            "name": "webhook",
+            "description": "Event triggered when there is a webhook coming from PandaDoc."
+        }
+    ],
+    "functions": [
+        {
+            "label": "GET",
+            "name": "_get"
+        },
+        {
+            "label": "POST",
+            "name": "_post"
+        }
+    ],
+    "scripts":[
+        "functions.js"
+    ],
+    "configuration":[
+        {
+            "name": "clientId",
+            "label": "Client ID",
+            "type": "text",
+            "required": true
+        },
+        {
+            "name": "clientSecret",
+            "label": "Client secret",
+            "type": "text",
+            "required": true
+        },
+        {
+            "name": "requestToken",
+            "label": "Request token",
+            "type": "oauth2",
+            "typeOptions": {
+                "clientId": "config.clientId",
+                "clientSecret": "config.clientSecret",
+                "authUrl": "'https://app.pandadoc.com/oauth2/authorize'",
+                "accessTokenUrl": "'https://api.pandadoc.com/oauth2/access_token'",
+                "scope": "'read+write'",
+                "grantType": "'authorization_code'",
+                "accessToken": "@config.accessToken",
+                "refreshToken": "@config.refreshToken"
+            }
+        },
+        {
+            "name": "accessToken",
+            "label": "Access token",
+            "type": "text"
+        },
+        {
+            "name": "refreshToken",
+            "label": "Refresh token",
+            "type": "text",
+            "required": true
+        },
+        {
+            "name": "webhooksSharedKey",
+            "label": "Webhooks shared key",
+            "type": "text",
+            "required": false
+        },
+        {
+            "name": "webhook",
+            "label": "Webhook URL",
+            "type": "label",
+            "value": "config.WEBHOOK_URL"
+        }
+    ]
+}
