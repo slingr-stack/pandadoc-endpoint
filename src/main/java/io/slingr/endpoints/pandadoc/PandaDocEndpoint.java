@@ -29,6 +29,9 @@ public class PandaDocEndpoint extends HttpEndpoint {
     private AppLogs appLogger;
 
     @EndpointProperty
+    private String authenticationMethod;
+
+    @EndpointProperty
     private String clientId;
 
     @EndpointProperty
@@ -39,6 +42,9 @@ public class PandaDocEndpoint extends HttpEndpoint {
 
     @EndpointProperty
     private String refreshToken;
+
+    @EndpointProperty
+    private String apiKey;
 
     @EndpointProperty
     private String webhooksSharedKey;
@@ -59,7 +65,7 @@ public class PandaDocEndpoint extends HttpEndpoint {
             setRequestHeaders(request);
             return defaultGetRequest(request);
         } catch (EndpointException restException) {
-            if (restException.getHttpStatusCode() == 401) {
+            if (restException.getHttpStatusCode() == 401 && authenticationMethod.equals("oAuth2")) {
                 // we might need to refresh the token
                 generateNewAccessToken();
                 setRequestHeaders(request);
@@ -76,7 +82,7 @@ public class PandaDocEndpoint extends HttpEndpoint {
             setRequestHeaders(request);
             return defaultPostRequest(request);
         } catch (EndpointException restException) {
-            if (restException.getHttpStatusCode() == 401) {
+            if (restException.getHttpStatusCode() == 401 && authenticationMethod.equals("oAuth2")) {
                 // we might need to refresh the token
                 generateNewAccessToken();
                 setRequestHeaders(request);
@@ -108,7 +114,11 @@ public class PandaDocEndpoint extends HttpEndpoint {
         if (headers == null) {
             headers = Json.map();
         }
-        headers.set("Authorization", "Bearer " + accessToken);
+        if (authenticationMethod.equals("apiKey")) {
+            headers.set("Authorization", "API-Key " + apiKey);
+        } else {
+            headers.set("Authorization", "Bearer " + accessToken);
+        }
         headers.set("Content-Type", "application/json");
         if (headers.isEmpty("Accept")) {
             headers.set("Accept", "application/json");
