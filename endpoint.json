@@ -64,24 +64,28 @@
             "name": "apiKey",
             "label": "API Key",
             "type": "text",
-            "required": "@config.authenticationMethod == 'apiKey'"
+            "required": true,
+            "visible": "@config.authenticationMethod == 'apiKey'"
         },
         {
             "name": "clientId",
             "label": "Client ID",
             "type": "text",
-            "required": "@config.authenticationMethod == 'oAuth2'"
+            "required": true,
+            "visible": "@config.authenticationMethod == 'oAuth2'"
         },
         {
             "name": "clientSecret",
             "label": "Client secret",
             "type": "text",
-            "required": "@config.authenticationMethod == 'oAuth2'"
+            "required": true,
+            "visible": "@config.authenticationMethod == 'oAuth2'"
         },
         {
             "name": "requestToken",
             "label": "Request token",
             "type": "oauth2",
+            "visible": "@config.authenticationMethod == 'oAuth2'",
             "typeOptions": {
                 "clientId": "config.clientId",
                 "clientSecret": "config.clientSecret",
@@ -97,12 +101,13 @@
             "name": "accessToken",
             "label": "Access token",
             "type": "text"
+            "visible": "@config.authenticationMethod == 'oAuth2'"
         },
         {
             "name": "refreshToken",
             "label": "Refresh token",
             "type": "text",
-            "required": "@config.authenticationMethod == 'oAuth2'"
+            "visible": "@config.authenticationMethod == 'oAuth2'"
         },
         {
             "name": "webhooksSharedKey",
