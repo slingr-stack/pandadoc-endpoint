@@ -97,7 +97,7 @@ public class PandaDocEndpoint extends HttpEndpoint {
     public String webhookProcessor(WebServiceRequest request){
         String signature = request.getParameter("signature");
         if (!StringUtils.isBlank(webhooksSharedKey)) {
-            if (!WebhooksUtils.verifySignature(request.getJsonBody(), signature, webhooksSharedKey)) {
+            if (!WebhooksUtils.verifySignature(request.getRawBody(), signature, webhooksSharedKey)) {
                 throw EndpointException.permanent(ErrorCode.ARGUMENT, "Invalid signature");
             }
         }
