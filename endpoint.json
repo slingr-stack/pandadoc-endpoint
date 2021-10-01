@@ -100,7 +100,7 @@
         {
             "name": "accessToken",
             "label": "Access token",
-            "type": "text"
+            "type": "text",
             "visible": "@config.authenticationMethod == 'oAuth2'"
         },
         {
