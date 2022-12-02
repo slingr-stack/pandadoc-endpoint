@@ -1,113 +1,160 @@
-/////////////////////
-// Public API
-/////////////////////
+////////////////////////////////////////////////////////////////////////////
+//                                                                        //
+//             This file was generated with "slingr-helpgen"              //
+//                                                                        //
+//               For more info, check the following links:                //
+//             https://www.npmjs.com/package/slingr-helpgen               //
+//           https://github.com/slingr-stack/slingr-helpgen               //
+//                                                                        //
+////////////////////////////////////////////////////////////////////////////
 
-endpoint.listDocuments = function(params) {
-    return endpoint.get('/documents', {params: params})
+
+function parse(str) {
+	try {
+		if (arguments.length > 1) {
+			var args = arguments[1], i = 0;
+			return str.replace(/(:(?:\w|-)+)/g, () => {
+				if (typeof (args[i]) != 'string') throw new Error('Invalid type of argument: [' + args[i] + '] for url [' + str + '].');
+				return args[i++];
+			});
+		} else {
+			if (str) {
+				return str;
+			}
+			throw new Error('No arguments nor url were received when calling the helper. Please check it\'s definition.');
+		}
+	} catch (err) {
+		sys.logs.error('Some unexpected error happened during the parse of the url for this helper.')
+		throw err;
+	}
+}
+
+endpoint.documents = {};
+
+endpoint.documents.details = {};
+
+endpoint.documents.send = {};
+
+endpoint.documents.session = {};
+
+endpoint.documents.download = {};
+
+endpoint.templates = {};
+
+endpoint.templates.details = {};
+
+endpoint.documents.get = function(documentId, httpOptions) {
+	var url;
+	switch(arguments.length){
+		case 0:
+			url = parse('/documents');
+			break;
+		case 1:
+			url = parse('/documents/:documentId', [documentId]);
+			break;
+		default:
+			sys.logs.error('Invalid argument received.');
+			return;
+	}
+	sys.logs.debug('[pandadoc] GET from: ' + url);
+	return endpoint.get(url, httpOptions);
 };
 
-endpoint.createDocumentFromTemplate = function(body) {
-    return endpoint.post('/documents', body);
+endpoint.documents.post = function(fileId, httpOptions) {
+	var url;
+	switch(arguments.length){
+		case 0:
+			url = parse('/documents');
+			break;
+		case 1:
+			url = parse('/documents/:fileId', [fileId]);
+			sys.logs.debug('[pandadoc] POST from: ' + url);
+			return endpoint.post({
+				path: '/documents',
+				multipart: true,
+				parts: [
+					{
+						name: 'file',
+						type: 'file',
+						fileId: fileId
+					},
+					{
+						name: 'data',
+						type: 'other',
+						contentType: 'application/json',
+						content: httpOptions
+					}
+				]
+			});
+		default:
+			sys.logs.error('Invalid argument received.');
+			return;
+	}
+	sys.logs.debug('[pandadoc] POST from: ' + url);
+	return endpoint.post(url, httpOptions);
 };
 
-endpoint.createDocumentFromPdf = function(fileId, body) {
-    return endpoint.post({
-        path: '/documents',
-        multipart: true,
-        parts: [
-            {
-                name: 'file',
-                type: 'file',
-                fileId: fileId
-            },
-            {
-                name: 'data',
-                type: 'other',
-                contentType: 'application/json',
-                content: body
-            }
-        ]
-    });
+endpoint.documents.details.get = function(documentId, httpOptions) {
+	if (!documentId) {
+		sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
+		return;
+	}
+	var url = parse('/documents/:documentId/details', [documentId]);
+	sys.logs.debug('[pandadoc] GET from: ' + url);
+	return endpoint.get(url, httpOptions);
 };
 
-endpoint.getDocumentStatus = function(documentId) {
-    return endpoint.get('/documents/'+documentId);
+endpoint.documents.send.post = function(documentId, httpOptions) {
+	if (!documentId) {
+		sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
+		return;
+	}
+	var url = parse('/documents/:documentId/send', [documentId]);
+	sys.logs.debug('[pandadoc] POST from: ' + url);
+	return endpoint.post(url, httpOptions);
 };
 
-endpoint.getDocumentDetails = function(documentId) {
-    return endpoint.get('/documents/'+documentId+'/details');
+endpoint.documents.session.post = function(documentId, httpOptions) {
+	if (!documentId) {
+		sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
+		return;
+	}
+	var url = parse('/documents/:documentId/session', [documentId]);
+	sys.logs.debug('[pandadoc] POST from: ' + url);
+	let res = endpoint.post(url, httpOptions);
+	res.link = 'https://app.pandadoc.com/s/'+res.id;
+	return res;
 };
 
-endpoint.sendDocument = function(documentId, body) {
-    return endpoint.post('/documents/'+documentId+'/send')
+endpoint.documents.download.get = function(documentId, httpOptions) {
+	if (!documentId) {
+		sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
+		return;
+	}
+	var url = parse('/documents/:documentId/download', [documentId]);
+	sys.logs.debug('[pandadoc] GET from: ' + url);
+
+	var httpOptions = {
+		forceDownload: true,
+		downloadSync: true,
+		fileName: fileName || 'document.pdf'
+	};
+
+	return endpoint.get(url, httpOptions);
 };
 
-endpoint.createDocumentLink = function(documentId, body) {
-    var res = endpoint.post('/documents/'+documentId+'/session', body);
-    res.link = 'https://app.pandadoc.com/s/'+res.id;
-    return res;
+endpoint.templates.get = function(httpOptions) {
+	var url = parse('/templates');
+	sys.logs.debug('[pandadoc] GET from: ' + url);
+	return endpoint.get(url, httpOptions);
 };
 
-endpoint.downloadDocument = function(documentId, fileName) {
-    var request = {
-        path: '/documents/'+documentId+'/download',
-        forceDownload: true,
-        downloadSync: true,
-        fileName: fileName || 'document.pdf'
-    };
-    return endpoint.get(request);
+endpoint.templates.details.get = function(templateId, httpOptions) {
+	if (!templateId) {
+		sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [templateId].');
+		return;
+	}
+	var url = parse('/templates/:templateId/details', [templateId]);
+	sys.logs.debug('[pandadoc] GET from: ' + url);
+	return endpoint.get(url, httpOptions);
 };
-
-endpoint.listTemplates = function(params) {
-    return endpoint.get('/templates', {params: params})
-};
-
-endpoint.getTemplateDetails = function(templateId) {
-    return endpoint.get('/templates/'+templateId+'/details');
-};
-
-///////////////////////////////////
-// Public API - Generic Functions
-//////////////////////////////////
-
-endpoint.get = function(url, options) {
-    var options = checkHttpOptions(url, options);
-    return endpoint._get(options);
-};
-
-endpoint.post = function(url, options) {
-    options = checkHttpOptions(url, options);
-    return endpoint._post(options);
-};
-
-/////////////////////////////
-//  Private helpers
-/////////////////////////////
-
-var checkHttpOptions = function (url, options) {
-    options = options || {};
-    if (!!url) {
-        if (isObject(url)) {
-            // take the 'url' parameter as the options
-            options = url || {};
-        } else {
-            if (!!options.path || !!options.params || !!options.body) {
-                // options contains the http package format
-                options.path = url;
-            } else {
-                // create html package
-                options = {
-                    path: url,
-                    body: options
-                }
-            }
-        }
-    }
-    return options;
-};
-
-var isObject = function (obj) {
-    return !!obj && stringType(obj) === '[object Object]'
-};
-
-var stringType = Function.prototype.call.bind(Object.prototype.toString);

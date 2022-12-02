@@ -1,0 +1,41 @@
+{
+	"label": "head",
+	"name": "head",
+	"category": "integrations",
+	"description": "Sends head request",
+	"inputs": [
+		{
+			"label": "Url",
+			"name": "url",
+			"type": "text",
+			"description": "This is used to set a external URL",
+			"required": "true"
+		},
+		{
+			"label": "Body",
+			"name": "body",
+			"type": "text",
+			"description": "This is used to set body request"
+		},
+		{
+			"label": "CallbackData",
+			"name": "callbackData",
+			"type": "text",
+			"description": "This is used to set CallbackData"
+		},
+		{
+			"label": "Callbacks",
+			"name": "callbacks",
+			"type": "text",
+			"description": "This is used to set callbacks"
+		}
+	],
+	"outputs": [
+		{
+			"label": "Response",
+			"name": "response",
+			"type": "text",
+			"description": "The response to external URL"
+		}
+	]
+}
