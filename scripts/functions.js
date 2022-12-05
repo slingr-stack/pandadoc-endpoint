@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////////////////////
+ ////////////////////////////////////////////////////////////////////////////
 //                                                                        //
 //             This file was generated with "slingr-helpgen"              //
 //                                                                        //
@@ -63,10 +63,10 @@ endpoint.documents.get = function(documentId, httpOptions) {
 endpoint.documents.post = function(fileId, httpOptions) {
 	var url;
 	switch(arguments.length){
-		case 0:
+		case 1:
 			url = parse('/documents');
 			break;
-		case 1:
+		case 2:
 			url = parse('/documents/:fileId', [fileId]);
 			sys.logs.debug('[pandadoc] POST from: ' + url);
 			return endpoint.post({
@@ -158,3 +158,4 @@ endpoint.templates.details.get = function(templateId, httpOptions) {
 	sys.logs.debug('[pandadoc] GET from: ' + url);
 	return endpoint.get(url, httpOptions);
 };
+
