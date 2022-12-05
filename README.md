@@ -1,7 +1,7 @@
 ---
 title: PandaDoc endpoint
 keywords: 
-last_updated: October 30, 2017
+last_updated: December 02, 2022
 tags: []
 summary: "Detailed description of the API of the PandaDoc endpoint."
 ---
