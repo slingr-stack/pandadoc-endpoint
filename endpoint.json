@@ -5,6 +5,7 @@
     "internal": false,
     "configurationType": "GLOBAL",
     "deployment": {
+        "type": "java11",
         "profiles":[
             {
                 "name": "default",
@@ -29,15 +30,59 @@
     "functions": [
         {
             "label": "GET",
-            "name": "_get"
+            "name": "_get",
+            "description": "Sends a GET request",
+            "callbacks": [
+                {
+                    "name": "fileDownloaded"
+                }
+            ]
         },
         {
             "label": "POST",
-            "name": "_post"
+            "name": "_post",
+            "description": "Sends a POST request"
+        },
+        {
+            "label": "PUT",
+            "name": "_put",
+            "description": "Sends a PUT request"
+        },
+        {
+            "label": "PATCH",
+            "name": "_patch",
+            "description": "Sends a PATCH request"
+        },
+        {
+            "label": "DELETE",
+            "name": "_delete",
+            "description": "Sends a DELETE request"
+        },
+        {
+            "label": "HEAD",
+            "name": "_head",
+            "description": "Sends a HEAD request"
+        },
+        {
+            "label": "OPTIONS",
+            "name": "_options",
+            "description": "Sends a OPTIONS request"
         }
     ],
     "scripts":[
+        "http-generic-helpers.js",
         "functions.js"
+    ],
+    "flowSteps": [
+        "connect",
+        "delete",
+        "get",
+        "head",
+        "options",
+        "patch",
+        "post",
+        "put",
+        "trace"
     ],
     "configuration":[
         {
