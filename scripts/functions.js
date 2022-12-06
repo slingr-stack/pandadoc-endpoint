@@ -44,9 +44,11 @@ endpoint.templates = {};
 endpoint.templates.details = {};
 
 endpoint.documents.get = function(documentId, httpOptions) {
-	for (var i = 0 ; i < arguments.length; i++){
-		if (isObject(arguments[i]) && !httpOptions){
-			httpOptions = arguments[i];
+	if(!httpOptions){
+		for (var i = 0 ; i < arguments.length; i++){
+			if (isObject(arguments[i])){
+				httpOptions = arguments[i];
+			}
 		}
 	}
 	var url;
@@ -66,9 +68,12 @@ endpoint.documents.get = function(documentId, httpOptions) {
 };
 
 endpoint.documents.post = function(fileId, httpOptions) {
-	for (var i = 0 ; i < arguments.length; i++){
-		if (isObject(arguments[i]) && !httpOptions){
-			httpOptions = arguments[i];
+
+	if(!httpOptions){
+		for (var i = 0 ; i < arguments.length; i++){
+			if (isObject(arguments[i])){
+				httpOptions = arguments[i];
+			}
 		}
 	}
 	var url;
