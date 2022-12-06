@@ -1,4 +1,4 @@
- ////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 //                                                                        //
 //             This file was generated with "slingr-helpgen"              //
 //                                                                        //
@@ -43,7 +43,12 @@ endpoint.templates = {};
 
 endpoint.templates.details = {};
 
-endpoint.documents.get = function(documentId) {
+endpoint.documents.get = function(documentId, httpOptions) {
+	for (var i = 0 ; i < arguments.length; i++){
+		if (isObject(arguments[i]) && !httpOptions){
+			httpOptions = arguments[i];
+		}
+	}
 	var url;
 	switch(arguments.length){
 		case 0:
@@ -60,7 +65,12 @@ endpoint.documents.get = function(documentId) {
 	return endpoint.get(url, httpOptions);
 };
 
-endpoint.documents.post = function(httpOptions, fileId) {
+endpoint.documents.post = function(fileId, httpOptions) {
+	for (var i = 0 ; i < arguments.length; i++){
+		if (isObject(arguments[i]) && !httpOptions){
+			httpOptions = arguments[i];
+		}
+	}
 	var url;
 	switch(arguments.length){
 		case 1:
@@ -68,7 +78,6 @@ endpoint.documents.post = function(httpOptions, fileId) {
 			break;
 		case 2:
 			url = parse('/documents/:fileId', [fileId]);
-			sys.logs.debug('[pandadoc] POST from: ' + url);
 			return endpoint.post({
 				path: '/documents',
 				multipart: true,
@@ -94,7 +103,7 @@ endpoint.documents.post = function(httpOptions, fileId) {
 	return endpoint.post(url, httpOptions);
 };
 
-endpoint.documents.details.get = function(documentId) {
+endpoint.documents.details.get = function(documentId, httpOptions) {
 	if (!documentId) {
 		sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
 		return;
@@ -104,7 +113,7 @@ endpoint.documents.details.get = function(documentId) {
 	return endpoint.get(url, httpOptions);
 };
 
-endpoint.documents.send.post = function(httpOptions, documentId) {
+endpoint.documents.send.post = function(documentId, httpOptions) {
 	if (!documentId) {
 		sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
 		return;
@@ -114,7 +123,7 @@ endpoint.documents.send.post = function(httpOptions, documentId) {
 	return endpoint.post(url, httpOptions);
 };
 
-endpoint.documents.session.post = function(httpOptions, documentId) {
+endpoint.documents.session.post = function(documentId, httpOptions) {
 	if (!documentId) {
 		sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
 		return;
@@ -126,7 +135,7 @@ endpoint.documents.session.post = function(httpOptions, documentId) {
 	return res;
 };
 
-endpoint.documents.download.get = function(documentId) {
+endpoint.documents.download.get = function(documentId, fileName) {
 	if (!documentId) {
 		sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
 		return;
@@ -143,13 +152,13 @@ endpoint.documents.download.get = function(documentId) {
 	return endpoint.get(url, httpOptions);
 };
 
-endpoint.templates.get = function() {
+endpoint.templates.get = function(httpOptions) {
 	var url = parse('/templates');
 	sys.logs.debug('[pandadoc] GET from: ' + url);
 	return endpoint.get(url, httpOptions);
 };
 
-endpoint.templates.details.get = function(templateId) {
+endpoint.templates.details.get = function(templateId, httpOptions) {
 	if (!templateId) {
 		sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [templateId].');
 		return;
