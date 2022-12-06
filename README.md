@@ -339,19 +339,19 @@ app.endpoints.pandadoc.documents.post(body)
 * API URL: '/documents/:fileId'
 * HTTP Method: 'POST'
 ```javascript
-app.endpoints.pandadoc.documents.post(body, fileId)
+app.endpoints.pandadoc.documents.post(fileId, body)
 ```
 ---
 * API URL: '/documents/:documentId/send'
 * HTTP Method: 'POST'
 ```javascript
-app.endpoints.pandadoc.documents.send.post(body, documentId)
+app.endpoints.pandadoc.documents.send.post(documentId, body)
 ```
 ---
 * API URL: '/documents/:documentId/session'
 * HTTP Method: 'POST'
 ```javascript
-app.endpoints.pandadoc.documents.session.post(body, documentId)
+app.endpoints.pandadoc.documents.session.post(documentId, body)
 ```
 ---
 
