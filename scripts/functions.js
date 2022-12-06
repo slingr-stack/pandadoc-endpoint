@@ -10,23 +10,23 @@
 
 
 function parse(str) {
-	try {
-		if (arguments.length > 1) {
-			var args = arguments[1], i = 0;
-			return str.replace(/(:(?:\w|-)+)/g, () => {
-				if (typeof (args[i]) != 'string') throw new Error('Invalid type of argument: [' + args[i] + '] for url [' + str + '].');
-				return args[i++];
-			});
-		} else {
-			if (str) {
-				return str;
-			}
-			throw new Error('No arguments nor url were received when calling the helper. Please check it\'s definition.');
-		}
-	} catch (err) {
-		sys.logs.error('Some unexpected error happened during the parse of the url for this helper.')
-		throw err;
-	}
+    try {
+        if (arguments.length > 1) {
+            var args = arguments[1], i = 0;
+            return str.replace(/(:(?:\w|-)+)/g, () => {
+                if (typeof (args[i]) != 'string') throw new Error('Invalid type of argument: [' + args[i] + '] for url [' + str + '].');
+                return args[i++];
+            });
+        } else {
+            if (str) {
+                return str;
+            }
+            throw new Error('No arguments nor url were received when calling the helper. Please check it\'s definition.');
+        }
+    } catch (err) {
+        sys.logs.error('Some unexpected error happened during the parse of the url for this helper.')
+        throw err;
+    }
 }
 
 endpoint.documents = {};
@@ -43,7 +43,7 @@ endpoint.templates = {};
 
 endpoint.templates.details = {};
 
-endpoint.documents.get = function(documentId, httpOptions) {
+endpoint.documents.get = function(documentId) {
 	var url;
 	switch(arguments.length){
 		case 0:
@@ -60,7 +60,7 @@ endpoint.documents.get = function(documentId, httpOptions) {
 	return endpoint.get(url, httpOptions);
 };
 
-endpoint.documents.post = function(fileId, httpOptions) {
+endpoint.documents.post = function(httpOptions, fileId) {
 	var url;
 	switch(arguments.length){
 		case 1:
@@ -94,7 +94,7 @@ endpoint.documents.post = function(fileId, httpOptions) {
 	return endpoint.post(url, httpOptions);
 };
 
-endpoint.documents.details.get = function(documentId, httpOptions) {
+endpoint.documents.details.get = function(documentId) {
 	if (!documentId) {
 		sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
 		return;
@@ -104,7 +104,7 @@ endpoint.documents.details.get = function(documentId, httpOptions) {
 	return endpoint.get(url, httpOptions);
 };
 
-endpoint.documents.send.post = function(documentId, httpOptions) {
+endpoint.documents.send.post = function(httpOptions, documentId) {
 	if (!documentId) {
 		sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
 		return;
@@ -114,7 +114,7 @@ endpoint.documents.send.post = function(documentId, httpOptions) {
 	return endpoint.post(url, httpOptions);
 };
 
-endpoint.documents.session.post = function(documentId, httpOptions) {
+endpoint.documents.session.post = function(httpOptions, documentId) {
 	if (!documentId) {
 		sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
 		return;
@@ -126,7 +126,7 @@ endpoint.documents.session.post = function(documentId, httpOptions) {
 	return res;
 };
 
-endpoint.documents.download.get = function(documentId, httpOptions) {
+endpoint.documents.download.get = function(documentId) {
 	if (!documentId) {
 		sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
 		return;
@@ -143,13 +143,13 @@ endpoint.documents.download.get = function(documentId, httpOptions) {
 	return endpoint.get(url, httpOptions);
 };
 
-endpoint.templates.get = function(httpOptions) {
+endpoint.templates.get = function() {
 	var url = parse('/templates');
 	sys.logs.debug('[pandadoc] GET from: ' + url);
 	return endpoint.get(url, httpOptions);
 };
 
-endpoint.templates.details.get = function(templateId, httpOptions) {
+endpoint.templates.details.get = function(templateId) {
 	if (!templateId) {
 		sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [templateId].');
 		return;
@@ -158,4 +158,3 @@ endpoint.templates.details.get = function(templateId, httpOptions) {
 	sys.logs.debug('[pandadoc] GET from: ' + url);
 	return endpoint.get(url, httpOptions);
 };
-

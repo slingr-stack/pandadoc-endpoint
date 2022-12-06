@@ -266,7 +266,7 @@ SLINGR is a low-code rapid application development platform that accelerates dev
 This endpoint is licensed under the Apache License 2.0. See the `LICENSE` file for more details.
 
 
-# PandaDoc V2.0.0 
+# PandaDoc V2.0.1 
 
 ## Javascript API
 
@@ -279,8 +279,8 @@ The Javascript API of the pandadoc endpoint has three pieces:
 ## HTTP requests
 You can make `GET`,`POST` requests to the [pandadoc API](API_URL_HERE) like this:
 ```javascript
-var response = app.endpoints.pandadoc.get('/documents/:documentId')
-var response = app.endpoints.pandadoc.post('/documents/:fileId', body)
+var response = app.endpoints.pandadoc.get('/documents/:documentId/download')
+var response = app.endpoints.pandadoc.post('/documents', body)
 ```
 
 Please take a look at the documentation of the [HTTP endpoint](https://github.com/slingr-stack/http-endpoint#javascript-api)
@@ -339,25 +339,22 @@ app.endpoints.pandadoc.documents.post(body)
 * API URL: '/documents/:fileId'
 * HTTP Method: 'POST'
 ```javascript
-app.endpoints.pandadoc.documents.post(fileId, body)
+app.endpoints.pandadoc.documents.post(body, fileId)
 ```
 ---
 * API URL: '/documents/:documentId/send'
 * HTTP Method: 'POST'
 ```javascript
-app.endpoints.pandadoc.documents.send.post(documentId, body)
+app.endpoints.pandadoc.documents.send.post(body, documentId)
 ```
 ---
 * API URL: '/documents/:documentId/session'
 * HTTP Method: 'POST'
 ```javascript
-app.endpoints.pandadoc.documents.session.post(documentId, body)
+app.endpoints.pandadoc.documents.session.post(body, documentId)
 ```
 ---
 
 </details>
 
 For more information about how shortcuts work, and how they are generated, take a look at the [slingr-helpgen tool](https://github.com/slingr-stack/slingr-helpgen).
-
-## Additional Helpers
-*MANUALLY ADD THE DOCUMENTATION OF THESE HELPERS HERE...*
