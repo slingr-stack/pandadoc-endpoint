@@ -1,0 +1,271 @@
+{
+	"label": "HTTP call",
+	"name": "pandaDocCall",
+	"category": "integrations",
+	"description": "This flow step will send generic request",
+	"inputs": [
+		{
+			"label": "Method",
+			"name": "method",
+			"type": "dropDown",
+			"description": "Select method",
+			"multiplicity": "one",
+			"defaultValue": [
+				"get"
+			],
+			"options": {
+				"possibleValues": [
+					{
+						"label": "Get",
+						"name": "get"
+					},
+					{
+						"label": "Post",
+						"name": "post"
+					},
+					{
+						"label": "Put",
+						"name": "put"
+					},
+					{
+						"label": "Delete",
+						"name": "delete"
+					},
+					{
+						"label": "Connect",
+						"name": "connect"
+					},
+					{
+						"label": "Head",
+						"name": "head"
+					},
+					{
+						"label": "Options",
+						"name": "options"
+					},
+					{
+						"label": "Patch",
+						"name": "patch"
+					},
+					{
+						"label": "Trace",
+						"name": "trace"
+					}
+				],
+				"allowContextSelector": "false"
+			}
+		},
+		{
+			"label": "URL",
+			"name": "url",
+			"description": "The URL to which this endpoint will send the request.",
+			"type": "dropDown",
+			"required": "true",
+			"options": {
+				"possibleValues": [
+					{
+						"label": "/documents",
+						"name": "/documents",
+						"visibility": "['get', 'post'].includes(config.method)"
+					},
+					{
+						"label": "/documents/:documentId",
+						"name": "/documents/:documentId",
+						"visibility": "['get'].includes(config.method)"
+					},
+					{
+						"label": "/documents/:documentId/details",
+						"name": "/documents/:documentId/details",
+						"visibility": "['get'].includes(config.method)"
+					},
+					{
+						"label": "/documents/:documentId/download",
+						"name": "/documents/:documentId/download",
+						"visibility": "['get'].includes(config.method)"
+					},
+					{
+						"label": "/templates",
+						"name": "/templates",
+						"visibility": "['get'].includes(config.method)"
+					},
+					{
+						"label": "/templates/:templateId/details",
+						"name": "/templates/:templateId/details",
+						"visibility": "['get'].includes(config.method)"
+					},
+					{
+						"label": "/documents/:fileId",
+						"name": "/documents/:fileId",
+						"visibility": "['post'].includes(config.method)"
+					},
+					{
+						"label": "/documents/:documentId/send",
+						"name": "/documents/:documentId/send,",
+						"visibility": "['post'].includes(config.method)"
+					},
+					{
+						"label": "/documents/:documentId/session",
+						"name": "/documents/:documentId/session",
+						"visibility": "['post'].includes(config.method)"
+					}
+				],
+				"allowContextSelector": "false"
+			}
+		},
+		{
+			"label": "Path Variables",
+			"name": "pathVariables",
+			"description": "If your request requires a path variable, you should add this entry",
+			"type": "keyValue",
+			"visibility": "config.url.includes(':')",
+			"options": {
+				"allowContextSelector": "false"
+			}
+		},
+		{
+			"label": "Headers",
+			"name": "headers",
+			"description": "The headers have the 'key=value' form, per example: key=ABC123",
+			"type": "keyValue",
+			"options": {
+				"allowContextSelector": "false"
+			}
+		},
+		{
+			"label": "Params",
+			"name": "params",
+			"description": "The params have the 'key=value' form, per example: key=ABC123",
+			"type": "keyValue",
+			"options": {
+				"allowContextSelector": "false"
+			}
+		},
+		{
+			"label": "Body",
+			"name": "body",
+			"type": "json",
+			"required": "['post', 'put', 'patch'].includes(config.method)",
+			"visibility": "['post', 'put', 'patch'].includes(config.method)",
+			"description": "This is used to set body request",
+			"options": {
+				"allowContextSelector": "false"
+			}
+		},
+		{
+			"label": "Requires callback",
+			"name": "requiresCallBack",
+			"type": "boolean",
+			"description": "If true it will return callback",
+			"defaultValue": false,
+			"options": {
+				"allowContextSelector": "false"
+			}
+		},
+		{
+			"label": "Callback data",
+			"name": "callbackData",
+			"type": "json",
+			"description": "This is an object you can send that you will get back when the callback is processed",
+			"visibility": "config.requiresCallBack",
+			"options": {
+				"allowContextSelector": "false"
+			}
+		},
+		{
+			"label": "Callbacks",
+			"name": "callbacks",
+			"type": "script",
+			"description": "This is a map where you can listener for different callbacks",
+			"visibility": "config.requiresCallBack",
+			"options": {
+				"allowContextSelector": "false",
+				"parameters": ["event","data"]
+			}
+		},
+		{
+			"label": "Override Settings",
+			"name": "overrideSettings",
+			"type": "boolean",
+			"description": "If true, allows adding configurations",
+			"defaultValue": false,
+			"options": {
+				"allowContextSelector": "false"
+			}
+		},
+		{
+			"label": "Follow Redirects",
+			"name": "followRedirects",
+			"type": "boolean",
+			"description": "Follow the redirects when a HTTP request is executed",
+			"visibility": "config.overrideSettings",
+			"defaultValue": false,
+			"options": {
+				"allowContextSelector": "false"
+			}
+		},
+		{
+			"label": "Download",
+			"name": "download",
+			"type": "boolean",
+			"description": "Determines if the HTTP resource will be downloaded",
+			"visibility": "config.overrideSettings",
+			"defaultValue": false,
+			"options": {
+				"allowContextSelector": "false"
+			}
+		},
+		{
+			"label": "Full Response",
+			"name": "fullResponse",
+			"type": "boolean",
+			"description": "Include extended information about response",
+			"visibility": "config.overrideSettings",
+			"defaultValue": false,
+			"options": {
+				"allowContextSelector": "false"
+			}
+		},
+		{
+			"label": "Connection timeout",
+			"name": "connectionTimeout",
+			"description": "Connect timeout interval, in milliseconds (0 = infinity). Default value: 5000 ms (5 sec)",
+			"visibility": "config.overrideSettings",
+			"type": "text",
+			"defaultValue": "5000",
+			"typeOptions": {
+				"validation": {
+					"function": "!config.connectionTimeout || utils.isPlaceholder(config.connectionTimeout) || utils.getInteger(config.connectionTimeout) >= 0",
+					"message": "The time must be a valid placeholder or a positive integer greater than or equal to 0. "
+				}
+			},
+			"options": {
+				"allowContextSelector": "false"
+			}
+		},
+		{
+			"label": "Read timeout",
+			"name": "readTimeout",
+			"description": "Read timeout interval, in milliseconds (0 = infinity). Default value: 60000 ms (60 sec)",
+			"visibility": "config.settings",
+			"type": "text",
+			"defaultValue": "60000",
+			"typeOptions": {
+				"validation": {
+					"function": "!config.readTimeout || utils.isPlaceholder(config.readTimeout) || utils.getInteger(config.readTimeout) >= 0",
+					"message": "The time must be a valid placeholder or a positive integer greater than or equal to 0. "
+				}
+			},
+			"options": {
+				"allowContextSelector": "false"
+			}
+		}
+	],
+	"outputs": [
+		{
+			"label": "Response",
+			"name": "response",
+			"type": "object",
+			"description": "The response to external URL"
+		}
+	]
+}
