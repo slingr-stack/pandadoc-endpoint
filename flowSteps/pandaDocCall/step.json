@@ -65,48 +65,39 @@
 				"possibleValues": [
 					{
 						"label": "/documents",
-						"name": "/documents",
-						"visibility": "['get', 'post'].includes(config.method)"
+						"name": "/documents"
 					},
 					{
 						"label": "/documents/:documentId",
-						"name": "/documents/:documentId",
-						"visibility": "['get'].includes(config.method)"
+						"name": "/documents/:documentId"
 					},
 					{
 						"label": "/documents/:documentId/details",
-						"name": "/documents/:documentId/details",
-						"visibility": "['get'].includes(config.method)"
+						"name": "/documents/:documentId/details"
 					},
 					{
 						"label": "/documents/:documentId/download",
-						"name": "/documents/:documentId/download",
-						"visibility": "['get'].includes(config.method)"
+						"name": "/documents/:documentId/download"
 					},
 					{
 						"label": "/templates",
-						"name": "/templates",
-						"visibility": "['get'].includes(config.method)"
+						"name": "/templates"
 					},
 					{
 						"label": "/templates/:templateId/details",
-						"name": "/templates/:templateId/details",
-						"visibility": "['get'].includes(config.method)"
+						"name": "/templates/:templateId/details"
 					},
 					{
 						"label": "/documents/:fileId",
-						"name": "/documents/:fileId",
-						"visibility": "['post'].includes(config.method)"
+						"name": "/documents/:fileId"
 					},
 					{
 						"label": "/documents/:documentId/send",
-						"name": "/documents/:documentId/send,",
-						"visibility": "['post'].includes(config.method)"
+						"name": "/documents/:documentId/send,"
 					},
 					{
 						"label": "/documents/:documentId/session",
-						"name": "/documents/:documentId/session",
-						"visibility": "['post'].includes(config.method)"
+						"name": "/documents/:documentId/session"
 					}
 				],
 				"allowContextSelector": "false"
@@ -116,29 +107,19 @@
 			"label": "Path Variables",
 			"name": "pathVariables",
 			"description": "If your request requires a path variable, you should add this entry",
-			"type": "keyValue",
-			"visibility": "config.url.includes(':')",
-			"options": {
-				"allowContextSelector": "false"
-			}
+			"type": "keyValue"
 		},
 		{
 			"label": "Headers",
 			"name": "headers",
 			"description": "The headers have the 'key=value' form, per example: key=ABC123",
-			"type": "keyValue",
-			"options": {
-				"allowContextSelector": "false"
-			}
+			"type": "keyValue"
 		},
 		{
 			"label": "Params",
 			"name": "params",
 			"description": "The params have the 'key=value' form, per example: key=ABC123",
-			"type": "keyValue",
-			"options": {
-				"allowContextSelector": "false"
-			}
+			"type": "keyValue"
 		},
 		{
 			"label": "Body",
