@@ -68,36 +68,36 @@
 						"name": "/documents"
 					},
 					{
-						"label": "/documents/:documentId",
-						"name": "/documents/:documentId"
+						"label": "/documents/{documentId}",
+						"name": "/documents/{documentId}"
 					},
 					{
-						"label": "/documents/:documentId/details",
-						"name": "/documents/:documentId/details"
+						"label": "/documents/{documentId}/details",
+						"name": "/documents/{documentId}/details"
 					},
 					{
-						"label": "/documents/:documentId/download",
-						"name": "/documents/:documentId/download"
+						"label": "/documents/{documentId}/download",
+						"name": "/documents/{documentId}/download"
 					},
 					{
 						"label": "/templates",
 						"name": "/templates"
 					},
 					{
-						"label": "/templates/:templateId/details",
-						"name": "/templates/:templateId/details"
+						"label": "/templates/{templateId}/details",
+						"name": "/templates/{templateId}/details"
 					},
 					{
-						"label": "/documents/:fileId",
-						"name": "/documents/:fileId"
+						"label": "/documents/{fileId}",
+						"name": "/documents/{fileId}"
 					},
 					{
-						"label": "/documents/:documentId/send",
-						"name": "/documents/:documentId/send,"
+						"label": "/documents/{documentId}/send",
+						"name": "/documents/{documentId}/send,"
 					},
 					{
-						"label": "/documents/:documentId/session",
-						"name": "/documents/:documentId/session"
+						"label": "/documents/{documentId}/session",
+						"name": "/documents/{documentId}/session"
 					}
 				],
 				"allowContextSelector": "false"
@@ -106,20 +106,29 @@
 		{
 			"label": "Path Variables",
 			"name": "pathVariables",
-			"description": "If your request requires a path variable, you should add this entry",
-			"type": "keyValue"
+			"description": "If your request requires a path variable, you should add this entry, e.g.: documentId = 1",
+			"type": "keyValue",
+			"options": {
+				"allowContextSelector": "false"
+			}
 		},
 		{
 			"label": "Headers",
 			"name": "headers",
 			"description": "The headers have the 'key=value' form, per example: key=ABC123",
-			"type": "keyValue"
+			"type": "keyValue",
+			"options": {
+				"allowContextSelector": "false"
+			}
 		},
 		{
 			"label": "Params",
 			"name": "params",
 			"description": "The params have the 'key=value' form, per example: key=ABC123",
-			"type": "keyValue"
+			"type": "keyValue",
+			"options": {
+				"allowContextSelector": "false"
+			}
 		},
 		{
 			"label": "Body",
