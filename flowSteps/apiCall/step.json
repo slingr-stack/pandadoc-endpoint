@@ -1,6 +1,6 @@
 {
-	"label": "HTTP call",
-	"name": "pandaDocCall",
+	"label": "API call",
+	"name": "apiCall",
 	"category": "integrations",
 	"description": "This flow step will send generic request",
 	"inputs": [

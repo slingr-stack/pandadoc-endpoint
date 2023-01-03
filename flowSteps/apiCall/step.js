@@ -17,7 +17,7 @@
  * {number} readTimeout, Connect timeout interval, in milliseconds.
  * @param {object} stepConfig.context {object} context
  */
-step.httpCall = function (stepConfig) {
+step.apiCall = function (stepConfig) {
 
 	var headers = isObject(stepConfig.inputs.headers) ? stepConfig.inputs.headers : stringToObject(stepConfig.inputs.headers)
 	var params = isObject(stepConfig.inputs.params) ? stepConfig.inputs.params : stringToObject(stepConfig.inputs.params)

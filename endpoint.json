@@ -74,7 +74,7 @@
         "functions.js"
     ],
     "flowSteps": [
-        "pandaDocCall"
+        "apiCall"
     ],
     "configuration":[
         {
