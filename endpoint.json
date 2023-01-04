@@ -25,6 +25,10 @@
             "label": "Webhook",
             "name": "webhook",
             "description": "Event triggered when there is a webhook coming from PandaDoc."
+        },
+        {
+            "label": "File Downloaded",
+            "name": "fileDownloaded"
         }
     ],
     "functions": [
@@ -34,7 +38,9 @@
             "description": "Sends a GET request",
             "callbacks": [
                 {
-                    "name": "fileDownloaded"
+                    "name": "fileDownloaded",
+                    "maxWaitingTime": 120000,
+                    "maxExpectedResponses": 1
                 }
             ]
         },
