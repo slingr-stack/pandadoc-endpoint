@@ -3,37 +3,37 @@
 ////////////////////////////////////
 
 endpoint.get = function(url, httpOptions, callbackData, callbacks) {
-    let options = checkHttpOptions(url, httpOptions);
+    var options = checkHttpOptions(url, httpOptions);
     return endpoint._get(options, callbackData, callbacks);
 };
 
 endpoint.post = function(url, httpOptions, callbackData, callbacks) {
-    let options = checkHttpOptions(url, httpOptions);
+    options = checkHttpOptions(url, httpOptions);
     return endpoint._post(options, callbackData, callbacks);
 };
 
 endpoint.put = function(url, httpOptions, callbackData, callbacks) {
-    let options = checkHttpOptions(url, httpOptions);
+    options = checkHttpOptions(url, httpOptions);
     return endpoint._put(options, callbackData, callbacks);
 };
 
 endpoint.patch = function(url, httpOptions, callbackData, callbacks) {
-    let options = checkHttpOptions(url, httpOptions);
+    options = checkHttpOptions(url, httpOptions);
     return endpoint._patch(options, callbackData, callbacks);
 };
 
 endpoint.delete = function(url, httpOptions, callbackData, callbacks) {
-    let options = checkHttpOptions(url, httpOptions);
+    var options = checkHttpOptions(url, httpOptions);
     return endpoint._delete(options, callbackData, callbacks);
 };
 
 endpoint.head = function(url, httpOptions, callbackData, callbacks) {
-    let options = checkHttpOptions(url, httpOptions);
+    var options = checkHttpOptions(url, httpOptions);
     return endpoint._head(options, callbackData, callbacks);
 };
 
 endpoint.options = function(url, httpOptions, callbackData, callbacks) {
-    let options = checkHttpOptions(url, httpOptions);
+    var options = checkHttpOptions(url, httpOptions);
     return endpoint._options(options, callbackData, callbacks);
 };
 
