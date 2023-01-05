@@ -25,10 +25,6 @@
             "label": "Webhook",
             "name": "webhook",
             "description": "Event triggered when there is a webhook coming from PandaDoc."
-        },
-        {
-            "label": "File Downloaded",
-            "name": "fileDownloaded"
         }
     ],
     "functions": [
