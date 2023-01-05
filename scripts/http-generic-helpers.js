@@ -22,9 +22,9 @@ endpoint.patch = function(url, httpOptions, callbackData, callbacks) {
     return endpoint._patch(options, callbackData, callbacks);
 };
 
-endpoint.devare = function(url, httpOptions, callbackData, callbacks) {
+endpoint.delete = function(url, httpOptions, callbackData, callbacks) {
     var options = checkHttpOptions(url, httpOptions);
-    return endpoint._devare(options, callbackData, callbacks);
+    return endpoint._delete(options, callbackData, callbacks);
 };
 
 endpoint.head = function(url, httpOptions, callbackData, callbacks) {
