@@ -8,23 +8,23 @@ endpoint.get = function(url, httpOptions, callbackData, callbacks) {
 };
 
 endpoint.post = function(url, httpOptions, callbackData, callbacks) {
-    options = checkHttpOptions(url, httpOptions);
+    var options = checkHttpOptions(url, httpOptions);
     return endpoint._post(options, callbackData, callbacks);
 };
 
 endpoint.put = function(url, httpOptions, callbackData, callbacks) {
-    options = checkHttpOptions(url, httpOptions);
+    var options = checkHttpOptions(url, httpOptions);
     return endpoint._put(options, callbackData, callbacks);
 };
 
 endpoint.patch = function(url, httpOptions, callbackData, callbacks) {
-    options = checkHttpOptions(url, httpOptions);
+    var options = checkHttpOptions(url, httpOptions);
     return endpoint._patch(options, callbackData, callbacks);
 };
 
-endpoint.delete = function(url, httpOptions, callbackData, callbacks) {
+endpoint.devare = function(url, httpOptions, callbackData, callbacks) {
     var options = checkHttpOptions(url, httpOptions);
-    return endpoint._delete(options, callbackData, callbacks);
+    return endpoint._devare(options, callbackData, callbacks);
 };
 
 endpoint.head = function(url, httpOptions, callbackData, callbacks) {

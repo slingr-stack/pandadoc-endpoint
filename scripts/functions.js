@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////////////////////
+ ////////////////////////////////////////////////////////////////////////////
 //                                                                        //
 //             This file was generated with "slingr-helpgen"              //
 //                                                                        //
@@ -64,11 +64,11 @@ endpoint.documents.get = function(documentId, httpOptions) {
 			return;
 	}
 	sys.logs.debug('[pandadoc] GET from: ' + url);
-	return endpoint.get(url, httpOptions);
+	var options = checkHttpOptions(url, httpOptions);
+	return endpoint._get(options);
 };
 
 endpoint.documents.post = function(fileId, httpOptions) {
-
 	if(!httpOptions){
 		for (var i = 0 ; i < arguments.length; i++){
 			if (isObject(arguments[i])){
@@ -105,7 +105,8 @@ endpoint.documents.post = function(fileId, httpOptions) {
 			return;
 	}
 	sys.logs.debug('[pandadoc] POST from: ' + url);
-	return endpoint.post(url, httpOptions);
+	var options = checkHttpOptions(url, httpOptions);
+	return endpoint._post(options);
 };
 
 endpoint.documents.details.get = function(documentId, httpOptions) {
@@ -115,7 +116,8 @@ endpoint.documents.details.get = function(documentId, httpOptions) {
 	}
 	var url = parse('/documents/:documentId/details', [documentId]);
 	sys.logs.debug('[pandadoc] GET from: ' + url);
-	return endpoint.get(url, httpOptions);
+	var options = checkHttpOptions(url, httpOptions);
+	return endpoint._get(options);
 };
 
 endpoint.documents.send.post = function(documentId, httpOptions) {
@@ -125,7 +127,8 @@ endpoint.documents.send.post = function(documentId, httpOptions) {
 	}
 	var url = parse('/documents/:documentId/send', [documentId]);
 	sys.logs.debug('[pandadoc] POST from: ' + url);
-	return endpoint.post(url, httpOptions);
+	var options = checkHttpOptions(url, httpOptions);
+	return endpoint._post(options);
 };
 
 endpoint.documents.session.post = function(documentId, httpOptions) {
@@ -135,7 +138,8 @@ endpoint.documents.session.post = function(documentId, httpOptions) {
 	}
 	var url = parse('/documents/:documentId/session', [documentId]);
 	sys.logs.debug('[pandadoc] POST from: ' + url);
-	let res = endpoint.post(url, httpOptions);
+	var options = checkHttpOptions(url, httpOptions);
+	var res = endpoint._post(options);
 	res.link = 'https://app.pandadoc.com/s/'+res.id;
 	return res;
 };
@@ -154,14 +158,15 @@ endpoint.documents.download.get = function(documentId, fileName) {
 		fileName: fileName || 'document.pdf'
 	};
 
-	let options = checkHttpOptions(url, httpOptions);
+	var options = checkHttpOptions(url, httpOptions);
 	return endpoint._get(options);
 };
 
 endpoint.templates.get = function(httpOptions) {
 	var url = parse('/templates');
 	sys.logs.debug('[pandadoc] GET from: ' + url);
-	return endpoint.get(url, httpOptions);
+	var options = checkHttpOptions(url, httpOptions);
+	return endpoint._get(options);
 };
 
 endpoint.templates.details.get = function(templateId, httpOptions) {
@@ -171,5 +176,6 @@ endpoint.templates.details.get = function(templateId, httpOptions) {
 	}
 	var url = parse('/templates/:templateId/details', [templateId]);
 	sys.logs.debug('[pandadoc] GET from: ' + url);
-	return endpoint.get(url, httpOptions);
+	var options = checkHttpOptions(url, httpOptions);
+	return endpoint._get(options);
 };
