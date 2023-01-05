@@ -72,7 +72,6 @@
         }
     ],
     "scripts":[
-        "http-generic-helpers.js",
         "functions.js"
     ],
     "flowSteps": [
