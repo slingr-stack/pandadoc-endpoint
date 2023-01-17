@@ -34,7 +34,9 @@
             "description": "Sends a GET request",
             "callbacks": [
                 {
-                    "name": "fileDownloaded"
+                    "name": "fileDownloaded",
+                    "maxWaitingTime": 120000,
+                    "maxExpectedResponses": 1
                 }
             ]
         },
@@ -70,19 +72,10 @@
         }
     ],
     "scripts":[
-        "http-generic-helpers.js",
         "functions.js"
     ],
     "flowSteps": [
-        "connect",
-        "delete",
-        "get",
-        "head",
-        "options",
-        "patch",
-        "post",
-        "put",
-        "trace"
+        "apiCall"
     ],
     "configuration":[
         {

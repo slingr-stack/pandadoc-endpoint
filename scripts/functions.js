@@ -64,11 +64,11 @@ endpoint.documents.get = function(documentId, httpOptions) {
 			return;
 	}
 	sys.logs.debug('[pandadoc] GET from: ' + url);
-	return endpoint.get(url, httpOptions);
+	var options = checkHttpOptions(url, httpOptions);
+	return endpoint._get(options);
 };
 
 endpoint.documents.post = function(fileId, httpOptions) {
-
 	if(!httpOptions){
 		for (var i = 0 ; i < arguments.length; i++){
 			if (isObject(arguments[i])){
@@ -105,7 +105,8 @@ endpoint.documents.post = function(fileId, httpOptions) {
 			return;
 	}
 	sys.logs.debug('[pandadoc] POST from: ' + url);
-	return endpoint.post(url, httpOptions);
+	var options = checkHttpOptions(url, httpOptions);
+	return endpoint._post(options);
 };
 
 endpoint.documents.details.get = function(documentId, httpOptions) {
@@ -115,7 +116,8 @@ endpoint.documents.details.get = function(documentId, httpOptions) {
 	}
 	var url = parse('/documents/:documentId/details', [documentId]);
 	sys.logs.debug('[pandadoc] GET from: ' + url);
-	return endpoint.get(url, httpOptions);
+	var options = checkHttpOptions(url, httpOptions);
+	return endpoint._get(options);
 };
 
 endpoint.documents.send.post = function(documentId, httpOptions) {
@@ -125,7 +127,8 @@ endpoint.documents.send.post = function(documentId, httpOptions) {
 	}
 	var url = parse('/documents/:documentId/send', [documentId]);
 	sys.logs.debug('[pandadoc] POST from: ' + url);
-	return endpoint.post(url, httpOptions);
+	var options = checkHttpOptions(url, httpOptions);
+	return endpoint._post(options);
 };
 
 endpoint.documents.session.post = function(documentId, httpOptions) {
@@ -135,7 +138,8 @@ endpoint.documents.session.post = function(documentId, httpOptions) {
 	}
 	var url = parse('/documents/:documentId/session', [documentId]);
 	sys.logs.debug('[pandadoc] POST from: ' + url);
-	let res = endpoint.post(url, httpOptions);
+	var options = checkHttpOptions(url, httpOptions);
+	var res = endpoint._post(options);
 	res.link = 'https://app.pandadoc.com/s/'+res.id;
 	return res;
 };
@@ -149,18 +153,21 @@ endpoint.documents.download.get = function(documentId, fileName) {
 	sys.logs.debug('[pandadoc] GET from: ' + url);
 
 	var httpOptions = {
+		path:url,
 		forceDownload: true,
 		downloadSync: true,
 		fileName: fileName || 'document.pdf'
 	};
 
-	return endpoint.get(url, httpOptions);
+	var options = checkHttpOptions(url, httpOptions);
+	return endpoint._get(options);
 };
 
 endpoint.templates.get = function(httpOptions) {
 	var url = parse('/templates');
 	sys.logs.debug('[pandadoc] GET from: ' + url);
-	return endpoint.get(url, httpOptions);
+	var options = checkHttpOptions(url, httpOptions);
+	return endpoint._get(options);
 };
 
 endpoint.templates.details.get = function(templateId, httpOptions) {
@@ -170,5 +177,78 @@ endpoint.templates.details.get = function(templateId, httpOptions) {
 	}
 	var url = parse('/templates/:templateId/details', [templateId]);
 	sys.logs.debug('[pandadoc] GET from: ' + url);
-	return endpoint.get(url, httpOptions);
+	var options = checkHttpOptions(url, httpOptions);
+	return endpoint._get(options);
 };
+
+ ////////////////////////////////////
+ // Public API - Generic Functions //
+ ////////////////////////////////////
+
+ endpoint.get = function(url, httpOptions, callbackData, callbacks) {
+	 var options = checkHttpOptions(url, httpOptions);
+	 return endpoint._get(options, callbackData, callbacks);
+ };
+
+ endpoint.post = function(url, httpOptions, callbackData, callbacks) {
+	 var options = checkHttpOptions(url, httpOptions);
+	 return endpoint._post(options, callbackData, callbacks);
+ };
+
+ endpoint.put = function(url, httpOptions, callbackData, callbacks) {
+	 var options = checkHttpOptions(url, httpOptions);
+	 return endpoint._put(options, callbackData, callbacks);
+ };
+
+ endpoint.patch = function(url, httpOptions, callbackData, callbacks) {
+	 var options = checkHttpOptions(url, httpOptions);
+	 return endpoint._patch(options, callbackData, callbacks);
+ };
+
+ endpoint.delete = function(url, httpOptions, callbackData, callbacks) {
+	 var options = checkHttpOptions(url, httpOptions);
+	 return endpoint._delete(options, callbackData, callbacks);
+ };
+
+ endpoint.head = function(url, httpOptions, callbackData, callbacks) {
+	 var options = checkHttpOptions(url, httpOptions);
+	 return endpoint._head(options, callbackData, callbacks);
+ };
+
+ endpoint.options = function(url, httpOptions, callbackData, callbacks) {
+	 var options = checkHttpOptions(url, httpOptions);
+	 return endpoint._options(options, callbackData, callbacks);
+ };
+
+ ///////////////////////
+ //  Private helpers  //
+ ///////////////////////
+
+ var checkHttpOptions = function (url, options) {
+	 options = options || {};
+	 if (!!url) {
+		 if (isObject(url)) {
+			 // take the 'url' parameter as the options
+			 options = url || {};
+		 } else {
+			 if (!!options.path || !!options.params || !!options.body) {
+				 // options contains the http package format
+				 options.path = url;
+			 } else {
+				 // create html package
+				 options = {
+					 path: url,
+					 body: options
+				 }
+			 }
+		 }
+	 }
+	 return options;
+ };
+
+ var isObject = function (obj) {
+	 return !!obj && stringType(obj) === '[object Object]'
+ };
+
+ var stringType = Function.prototype.call.bind(Object.prototype.toString);
+
