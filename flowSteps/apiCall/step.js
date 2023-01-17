@@ -24,7 +24,7 @@ step.apiCall = function (stepConfig) {
 	var body = isObject(stepConfig.inputs.body) ? stepConfig.inputs.body : JSON.parse(stepConfig.inputs.body);
 
 	var options = {
-		path: parse( stepConfig.inputs.url, stepConfig.inputs.pathVariables),
+		path: parse(stepConfig.inputs.url.urlValue, stepConfig.inputs.url.paramsValue),
 		params:params,
 		headers:headers,
 		body: body,
@@ -36,11 +36,6 @@ step.apiCall = function (stepConfig) {
 		connectionTimeout: stepConfig.inputs.connectionTimeout,
 		readTimeout: stepConfig.inputs.readTimeout
 	}
-
-	stepConfig.inputs.callbacks = stepConfig.inputs.callbacks ?
-		eval("stepConfig.inputs.callbacks = {fileDownloaded : function(event, callbackData) {" + stepConfig.inputs.callbacks + "}}") : stepConfig.inputs.callbacks;
-
-	stepConfig.inputs.callbackData = stepConfig.inputs.callbackData ? {record:stepConfig.inputs.callbackData} : stepConfig.inputs.callbackData;
 
 	switch (stepConfig.inputs.method) {
 		case 'get':
@@ -67,7 +62,6 @@ step.apiCall = function (stepConfig) {
 
 };
 
-
 var parse = function (url, pathVariables){
 
 	var regex = /{([^}]*)}/g;
@@ -87,7 +81,6 @@ var parse = function (url, pathVariables){
 
 	return url;
 }
-
 var isObject = function (obj) {
 	return !!obj && stringType(obj) === '[object Object]'
 };
