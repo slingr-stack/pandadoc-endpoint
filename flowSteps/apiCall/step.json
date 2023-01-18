@@ -18,19 +18,19 @@
               "label": "/documents"
             },
             {
-              "label": "/documents/:documentId"
+              "label": "/documents/{documentId}"
             },
             {
-              "label": "/documents/:documentId/details"
+              "label": "/documents/{documentId}/details"
             },
             {
-              "label": "/documents/:documentId/download"
+              "label": "/documents/{documentId}/download"
             },
             {
               "label": "/templates"
             },
             {
-              "label": "/templates/:templateId/details"
+              "label": "/templates/{templateId}/details"
             }
           ]
         },
@@ -39,13 +39,13 @@
             "label": "/documents"
           },
           {
-            "label": "/documents/:fileId"
+            "label": "/documents/{fileId}"
           },
           {
-            "label": "/documents/:documentId/send"
+            "label": "/documents/{documentId}/send"
           },
           {
-            "label": "/documents/:documentId/session"
+            "label": "/documents/{documentId}/session"
           }
         ]
       }
