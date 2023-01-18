@@ -32,22 +32,22 @@
             {
               "label": "/templates/{templateId}/details"
             }
+          ],
+          "post": [
+            {
+              "label": "/documents"
+            },
+            {
+              "label": "/documents/{fileId}"
+            },
+            {
+              "label": "/documents/{documentId}/send"
+            },
+            {
+              "label": "/documents/{documentId}/session"
+            }
           ]
-        },
-        "post": [
-          {
-            "label": "/documents"
-          },
-          {
-            "label": "/documents/{fileId}"
-          },
-          {
-            "label": "/documents/{documentId}/send"
-          },
-          {
-            "label": "/documents/{documentId}/session"
-          }
-        ]
+        }
       }
     },
     {
