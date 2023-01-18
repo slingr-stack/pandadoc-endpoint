@@ -37,7 +37,7 @@ step.apiCall = function (stepConfig) {
 		readTimeout: stepConfig.inputs.readTimeout
 	}
 
-	switch (stepConfig.inputs.method) {
+	switch (stepConfig.inputs.url.method) {
 		case 'get':
 			return endpoint._get(options, stepConfig.inputs.callbackData, stepConfig.inputs.callbacks);
 		case 'post':
