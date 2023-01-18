@@ -5,9 +5,9 @@
   "description": "This flow step will send generic request",
   "inputs": [
     {
-      "label": "Test",
-      "name": "test",
-      "description": "test field.",
+      "label": "Url",
+      "name": "url",
+      "description": "The method and path to which this endpoint will send the request.",
       "type": "urlParams",
       "required": "false",
       "options": {
