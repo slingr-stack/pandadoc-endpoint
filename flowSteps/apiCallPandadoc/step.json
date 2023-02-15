@@ -1,6 +1,6 @@
 {
-  "label": "API call",
-  "name": "apiCall",
+  "label": "API call to pandadoc",
+  "name": "apiCallPandadoc",
   "category": "integrations",
   "description": "This flow step will send generic request",
   "inputs": [

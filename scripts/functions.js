@@ -82,7 +82,6 @@ endpoint.documents.post = function(fileId, httpOptions) {
 			url = parse('/documents');
 			break;
 		case 2:
-			url = parse('/documents/:fileId', [fileId]);
 			return endpoint.post({
 				path: '/documents',
 				multipart: true,
