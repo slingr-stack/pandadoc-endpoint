@@ -113,7 +113,11 @@
         "functions.js"
     ],
     "flowSteps": [
-        "apiCall"
+        "apiCallPandadoc",
+        "listDocumentsPandadoc",
+        "downloadDocumentPandadoc",
+        "createDocumentFromPdfPandadoc",
+        "sendDocumentPandadoc"
     ],
     "configuration":[
         {
