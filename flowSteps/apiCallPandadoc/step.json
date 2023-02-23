@@ -9,7 +9,7 @@
       "name": "url",
       "description": "The method and path to which this endpoint will send the request.",
       "type": "urlParams",
-      "required": "false",
+      "required": "true",
       "options": {
         "type": "dropDown",
         "possibleValues": [
