@@ -31,7 +31,7 @@ step.apiCallPandadoc = function (inputs) {
       urlValue: "",
       paramsValue: []
     },
-    method: inputs.method || ""
+    method: inputs.url.urlValue ? inputs.url.urlValue.split(" ")[0] : ""
   };
 
 
@@ -54,7 +54,7 @@ step.apiCallPandadoc = function (inputs) {
     readTimeout: inputs.readTimeout
   }
 
-  switch (inputs.url.method.toLowerCase()) {
+  switch (inputs.method.toLowerCase()) {
     case 'get':
       return endpoint._get(options);
     case 'post':

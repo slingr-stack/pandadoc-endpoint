@@ -12,42 +12,38 @@
       "required": "false",
       "options": {
         "type": "dropDown",
-        "possibleValues": {
-          "get": [
-            {
-              "label": "/documents"
-            },
-            {
-              "label": "/documents/{documentId}"
-            },
-            {
-              "label": "/documents/{documentId}/details"
-            },
-            {
-              "label": "/documents/{documentId}/download"
-            },
-            {
-              "label": "/templates"
-            },
-            {
-              "label": "/templates/{templateId}/details"
-            }
-          ],
-          "post": [
-            {
-              "label": "/documents"
-            },
-            {
-              "label": "/documents/{fileId}"
-            },
-            {
-              "label": "/documents/{documentId}/send"
-            },
-            {
-              "label": "/documents/{documentId}/session"
-            }
-          ]
-        }
+        "possibleValues": [
+          {
+            "label": "GET /documents"
+          },
+          {
+            "label": "GET /documents/{documentId}"
+          },
+          {
+            "label": "GET /documents/{documentId}/details"
+          },
+          {
+            "label": "GET /documents/{documentId}/download"
+          },
+          {
+            "label": "GET /templates"
+          },
+          {
+            "label": "GET /templates/{templateId}/details"
+          },
+          {
+            "label": "POST /documents"
+          },
+          {
+            "label": "POST /documents/{fileId}"
+          },
+          {
+            "label": "POST /documents/{documentId}/send"
+          },
+          {
+            "label": "POST /documents/{documentId}/session"
+          }
+        ]
       }
     },
     {
