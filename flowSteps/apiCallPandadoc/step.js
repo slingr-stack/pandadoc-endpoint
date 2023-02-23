@@ -22,32 +22,23 @@ step.apiCallPandadoc = function (inputs) {
     headers: inputs.headers || [],
     params: inputs.params || [],
     body: inputs.body || {},
-    callbackData: inputs.callbackData || "",
-    callbacks: inputs.callbacks || "",
-    followRedirects: inputs.followRedirects || false,
     download: inputs.download || false,
     fileName: inputs.fileName || "",
     fullResponse: inputs.fullResponse || false,
     connectionTimeout: inputs.connectionTimeout || 5000,
     readTimeout: inputs.readTimeout || 60000,
-    events: inputs.events || "",
     url: inputs.url || {
       urlValue: "",
-      paramsValue: [],
-      method: ""
+      paramsValue: []
     },
-    action: inputs.action || ""
+    method: inputs.method || ""
   };
+
 
   inputs.headers = isObject(inputs.headers) ? inputs.headers : stringToObject(inputs.headers);
   inputs.params = isObject(inputs.params) ? inputs.params : stringToObject(inputs.params);
   inputs.body = isObject(inputs.body) ? inputs.body : JSON.parse(inputs.body);
 
-  inputs.callbacks = inputs.callbacks ?
-    eval("inputs.callbacks = {" + inputs.events + " : function(event, callbackData) {" + inputs.callbacks + "}}") :
-    inputs.callbacks;
-
-  inputs.callbackData = inputs.callbackData ? {record: inputs.callbackData} : inputs.callbackData;
 
   var options = {
     path: parse(inputs.url.urlValue, inputs.url.paramsValue),
@@ -55,37 +46,34 @@ step.apiCallPandadoc = function (inputs) {
     headers: inputs.headers,
     body: inputs.body,
     followRedirects : inputs.followRedirects,
-    forceDownload : inputs.events === "fileDownloaded" ? true : inputs.download,
-    downloadSync : inputs.events === "fileDownloaded" ? false : inputs.download,
+    forceDownload :inputs.download,
+    downloadSync : false,
     fileName: inputs.fileName,
     fullResponse : inputs.fullResponse,
     connectionTimeout: inputs.connectionTimeout,
-    readTimeout: inputs.readTimeout,
-    defaultCallback: !!inputs.events
-  };
+    readTimeout: inputs.readTimeout
+  }
 
   switch (inputs.url.method.toLowerCase()) {
     case 'get':
-      return endpoint._get(options, inputs.callbackData, inputs.callbacks);
+      return endpoint._get(options);
     case 'post':
-      return endpoint._post(options, inputs.callbackData, inputs.callbacks);
+      return endpoint._post(options);
     case 'delete':
-      return endpoint._delete(options, inputs.callbackData, inputs.callbacks);
+      return endpoint._delete(options);
     case 'put':
-      return endpoint._put(options, inputs.callbackData, inputs.callbacks);
+      return endpoint._put(options);
     case 'connect':
-      return endpoint._connect(options, inputs.callbackData, inputs.callbacks);
+      return endpoint._connect(options);
     case 'head':
-      return endpoint._head(options, inputs.callbackData, inputs.callbacks);
+      return endpoint._head(options);
     case 'options':
-      return endpoint._options(options, inputs.callbackData, inputs.callbacks);
+      return endpoint._options(options);
     case 'patch':
-      return endpoint._patch(options, inputs.callbackData, inputs.callbacks);
+      return endpoint._patch(options);
     case 'trace':
-      return endpoint._trace(options, inputs.callbackData, inputs.callbacks);
+      return endpoint._trace(options);
   }
-
-  
 
   return null;
 };
