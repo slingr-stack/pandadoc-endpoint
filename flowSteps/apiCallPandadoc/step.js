@@ -28,7 +28,7 @@ step.apiCallPandadoc = function (inputs) {
     connectionTimeout: inputs.connectionTimeout || 5000,
     readTimeout: inputs.readTimeout || 60000,
     url: inputs.url || {
-      urlValue: "",
+      urlValue: inputs.url.urlValue ? inputs.url.urlValue.split(" ")[1] : "",
       paramsValue: []
     },
     method: inputs.url.urlValue ? inputs.url.urlValue.split(" ")[0] : ""
