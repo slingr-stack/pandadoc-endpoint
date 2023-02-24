@@ -9,45 +9,41 @@
       "name": "url",
       "description": "The method and path to which this endpoint will send the request.",
       "type": "urlParams",
-      "required": "false",
+      "required": "true",
       "options": {
         "type": "dropDown",
-        "possibleValues": {
-          "get": [
-            {
-              "label": "/documents"
-            },
-            {
-              "label": "/documents/{documentId}"
-            },
-            {
-              "label": "/documents/{documentId}/details"
-            },
-            {
-              "label": "/documents/{documentId}/download"
-            },
-            {
-              "label": "/templates"
-            },
-            {
-              "label": "/templates/{templateId}/details"
-            }
-          ],
-          "post": [
-            {
-              "label": "/documents"
-            },
-            {
-              "label": "/documents/{fileId}"
-            },
-            {
-              "label": "/documents/{documentId}/send"
-            },
-            {
-              "label": "/documents/{documentId}/session"
-            }
-          ]
-        }
+        "possibleValues": [
+          {
+            "label": "GET /documents"
+          },
+          {
+            "label": "GET /documents/{documentId}"
+          },
+          {
+            "label": "GET /documents/{documentId}/details"
+          },
+          {
+            "label": "GET /documents/{documentId}/download"
+          },
+          {
+            "label": "GET /templates"
+          },
+          {
+            "label": "GET /templates/{templateId}/details"
+          },
+          {
+            "label": "POST /documents"
+          },
+          {
+            "label": "POST /documents/{fileId}"
+          },
+          {
+            "label": "POST /documents/{documentId}/send"
+          },
+          {
+            "label": "POST /documents/{documentId}/session"
+          }
+        ]
       }
     },
     {
@@ -68,49 +64,7 @@
       "type": "json",
       "description": "This is used to set body request",
       "options": {
-        "allowContextSelector": "false"
-      }
-    },
-    {
-      "label": "Event",
-      "name": "events",
-      "type": "dropDown",
-      "description": "Select event",
-      "multiplicity": "one",
-      "options": {
-        "possibleValues": [
-          {
-            "label": "File Downloaded",
-            "name": "fileDownloaded"
-          },
-          {
-            "label": "Callback",
-            "name": "callback"
-          }
-        ],
-        "allowContextSelector": "false"
-      }
-    },
-    {
-      "label": "Callback Data",
-      "name": "callbackData",
-      "type": "text",
-      "description": "This is an object you can send that you will get back when the function is processed",
-      "visibility": "config.events",
-      "options": {
-        "representation": "textArea",
         "allowContextSelector": "true"
-      }
-    },
-    {
-      "label": "Callbacks",
-      "name": "callbacks",
-      "type": "script",
-      "description": "This is a map where you can listener for different function",
-      "visibility": "config.events",
-      "options": {
-        "allowContextSelector": "false",
-        "parameters": ["event","callbackData"]
       }
     },
     {
