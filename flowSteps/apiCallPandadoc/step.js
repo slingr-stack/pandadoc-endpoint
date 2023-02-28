@@ -51,7 +51,7 @@ step.apiCallPandadoc = function (inputs) {
     readTimeout: inputsLogic.readTimeout
   }
 
-  switch (inputs.method.toLowerCase()) {
+  switch (inputsLogic.method.toLowerCase()) {
     case 'get':
       return endpoint._get(options);
     case 'post':
