@@ -2,60 +2,60 @@
   "label": "API call to pandadoc",
   "name": "apiCallPandadoc",
   "category": "integrations",
-  "description": "This flow step will send generic request",
+  "description": "This flow step will send generic request to pandadoc",
   "inputs": [
     {
       "label": "Url",
       "name": "url",
-      "description": "The method and path to which this endpoint will send the request.",
+      "description": "The method and path to which this endpoint is to send requests in a generic way.",
       "type": "urlParams",
       "required": "true",
       "options": {
         "type": "dropDown",
         "possibleValues": [
-          {
-            "label": "GET /documents"
-          },
-          {
-            "label": "GET /documents/{documentId}"
-          },
-          {
-            "label": "GET /documents/{documentId}/details"
-          },
-          {
-            "label": "GET /documents/{documentId}/download"
-          },
-          {
-            "label": "GET /templates"
-          },
-          {
-            "label": "GET /templates/{templateId}/details"
-          },
-          {
-            "label": "POST /documents"
-          },
-          {
-            "label": "POST /documents/{fileId}"
-          },
-          {
-            "label": "POST /documents/{documentId}/send"
-          },
-          {
-            "label": "POST /documents/{documentId}/session"
-          }
+            {
+              "label": "GET /documents"
+            },
+            {
+              "label": "GET /documents/{documentId}"
+            },
+            {
+              "label": "GET /documents/{documentId}/details"
+            },
+            {
+              "label": "GET /documents/{documentId}/download"
+            },
+            {
+              "label": "GET /templates"
+            },
+            {
+              "label": "GET /templates/{templateId}/details"
+            },
+            {
+              "label": "POST /documents"
+            },
+            {
+              "label": "POST /documents/{fileId}"
+            },
+            {
+              "label": "POST /documents/{documentId}/send"
+            },
+            {
+              "label": "POST /documents/{documentId}/session"
+            }
         ]
       }
     },
     {
       "label": "Headers",
       "name": "headers",
-      "description": "The headers have the 'key=value' form, per example: key=ABC123",
+      "description": "Let the client and the server pass additional information with the HTTP request in a key value format. (e.g. key=ABC123)",
       "type": "keyValue"
     },
     {
-      "label": "Params",
+      "label": "Query Params",
       "name": "params",
-      "description": "The params have the 'key=value' form, per example: key=ABC123",
+      "description": "Parameters attached to the end of a url in a key value format. (e.g. key=ABC123)",
       "type": "keyValue"
     },
     {

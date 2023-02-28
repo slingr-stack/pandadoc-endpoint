@@ -8,8 +8,6 @@
  * {Array[string]} headers, This is used to config headers.
  * {Array[string]} params, This is used to config params.
  * {string} body, This is used to send body request.
- * {string} callbackData, This is used to send callback data.
- * {text} callbacks, This is used to send callbacks.
  * {boolean} followRedirects, This is used to config follow redirects.
  * {boolean} download, This is used to config download.
  * {boolean} fullResponse, This is used to config full response.
@@ -18,7 +16,7 @@
  */
 step.apiCallPandadoc = function (inputs) {
 
-  var inputs = {
+  var inputsLogic = {
     headers: inputs.headers || [],
     params: inputs.params || [],
     body: inputs.body || {},
@@ -34,24 +32,23 @@ step.apiCallPandadoc = function (inputs) {
     method: inputs.url.urlValue ? inputs.url.urlValue.split(" ")[0] : ""
   };
 
-
-  inputs.headers = isObject(inputs.headers) ? inputs.headers : stringToObject(inputs.headers);
-  inputs.params = isObject(inputs.params) ? inputs.params : stringToObject(inputs.params);
-  inputs.body = isObject(inputs.body) ? inputs.body : JSON.parse(inputs.body);
+  inputsLogic.headers = isObject(inputsLogic.headers) ? inputsLogic.headers : stringToObject(inputsLogic.headers);
+  inputsLogic.params = isObject(inputsLogic.params) ? inputsLogic.params : stringToObject(inputsLogic.params);
+  inputsLogic.body = isObject(inputsLogic.body) ? inputsLogic.body : JSON.parse(inputsLogic.body);
 
 
   var options = {
-    path: parse(inputs.url.urlValue, inputs.url.paramsValue),
-    params: inputs.params,
-    headers: inputs.headers,
-    body: inputs.body,
-    followRedirects : inputs.followRedirects,
-    forceDownload :inputs.download,
+    path: parse(inputsLogic.url.urlValue, inputsLogic.url.paramsValue),
+    params: inputsLogic.params,
+    headers: inputsLogic.headers,
+    body: inputsLogic.body,
+    followRedirects : inputsLogic.followRedirects,
+    forceDownload :inputsLogic.download,
     downloadSync : false,
-    fileName: inputs.fileName,
-    fullResponse : inputs.fullResponse,
-    connectionTimeout: inputs.connectionTimeout,
-    readTimeout: inputs.readTimeout
+    fileName: inputsLogic.fileName,
+    fullResponse : inputsLogic.fullResponse,
+    connectionTimeout: inputsLogic.connectionTimeout,
+    readTimeout: inputsLogic.readTimeout
   }
 
   switch (inputs.method.toLowerCase()) {
