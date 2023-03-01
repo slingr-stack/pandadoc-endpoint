@@ -62,9 +62,9 @@
       "label": "Body",
       "name": "body",
       "type": "json",
-      "description": "This is used to set body request",
+      "description": "Content to be sent to the server.",
       "options": {
-        "allowContextSelector": "true"
+        "allowContextSelector": true
       }
     },
     {

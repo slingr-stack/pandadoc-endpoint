@@ -20,6 +20,7 @@ step.apiCallPandadoc = function (inputs) {
     headers: inputs.headers || [],
     params: inputs.params || [],
     body: inputs.body || {},
+	followRedirects: inputs.followRedirects|| false,
     download: inputs.download || false,
     fileName: inputs.fileName || "",
     fullResponse: inputs.fullResponse || false,
@@ -51,7 +52,7 @@ step.apiCallPandadoc = function (inputs) {
     readTimeout: inputsLogic.readTimeout
   }
 
-  switch (inputsLogic.method.toLowerCase()) {
+	switch (inputsLogic.method.toLowerCase()) {
     case 'get':
       return endpoint._get(options);
     case 'post':
@@ -71,6 +72,8 @@ step.apiCallPandadoc = function (inputs) {
     case 'trace':
       return endpoint._trace(options);
   }
+
+  
 
   return null;
 };
