@@ -2,7 +2,7 @@
   "label": "Create document from pdf to pandadoc",
   "name": "createDocumentFromPdfPandadoc",
   "category": "integrations",
-  "description": "Download a pandadoc document",
+  "description": "Create a pandadoc document from a pdf file",
   "inputs": [
     {
       "label": "File Id",
@@ -25,7 +25,7 @@
     {
       "label": "Recipients",
       "name": "recipients",
-      "description": "Add a recipient to view or sign your document.",
+      "description": "Add a recipient to view or sign your document",
       "type": "text",
       "multiplicity": "many",
       "options": {

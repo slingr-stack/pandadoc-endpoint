@@ -13,7 +13,7 @@ The PandaDoc endpoint has the following features:
 - Authorization and generation of OAuth tokens
 - Automatic refresh of tokens when they expire
 - Access to the whole REST API
-- Uploading and downloading of files integrated with SLINGR's features
+- Uploading and downloading of files integrated with Slingr's features
 
 Please make sure you take a look at the documentation from PandaDoc as features are based on its API:
 
@@ -114,7 +114,7 @@ This field is optional. If you put a key here, webhooks will be validated accord
 
 At the moment this endpoint was created shared keys was only available for the webhooks integrations in the main
 PandaDoc application and wasn't available for webhooks defined in applications created by external developers. So if
-you don't want users to setup the webhooks integrations by themselves, you should leave this field empty and be
+you don't want users to set up the webhooks integrations by themselves, you should leave this field empty and be
 aware that there won't be validations on incoming webhooks.
 
 ### Webhook URL
@@ -132,7 +132,7 @@ The Javascript API of the pandadoc endpoint has three pieces:
 - **Additional Helpers**: These helpers provide additional features that facilitate or improves the endpoint usage in SLINGR.
 
 ## HTTP requests
-You can make `GET`,`POST` requests to the [pandadoc API](API_URL_HERE) like this:
+You can make `GET`,`POST` requests to the [pandadoc API](https://api.pandadoc.com) like this:
 ```javascript
 var response = app.endpoints.pandadoc.get('/templates')
 var response = app.endpoints.pandadoc.post('/documents/:fileId', body)
@@ -391,27 +391,240 @@ For more information about how shortcuts or flow steps works, and how they are g
 
 ### Create Document From Pdf
 
-Description of Custom Flow Steps
+Create a pandadoc document from a pdf file.
 
-*MANUALLY ADD THE DOCUMENTATION OF THESE FLOW STEPS HERE...*
+<table>
+    <thead>
+    <tr>
+        <th>Label</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Visibility</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>File id</td>
+        <td>text</td>
+        <td>no</td>
+        <td> - </td>
+        <td>Always</td>
+        <td>
+            The id provided by record of the file to create the PDF.
+        </td>
+    </tr>
+    <tr>
+        <td>File Name</td>
+        <td>text</td>
+        <td>no</td>
+        <td> - </td>
+        <td>Always</td>
+        <td>
+            The name with which the file is created in Pandadoc.
+        </td>
+    </tr>
+    <tr>
+        <td>Recipients</td>
+        <td>Multiple texts</td>
+        <td>no</td>
+        <td> - </td>
+        <td>Always</td>
+        <td>
+            Add a recipient to view or sign your document.
+        </td>
+    </tr>
+    <tr>
+        <td>Fields</td>
+        <td>keyValue</td>
+        <td>no</td>
+        <td> - </td>
+        <td>Always</td>
+        <td>
+            You may pass a list of fields/values to pre-fill fields used in a template.
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>response</td>
+        <td>object</td>
+        <td>
+            Object resulting from the response to the endpoint call.
+        </td>
+    </tr>
+    </tbody>
+</table>
 
 ### Download Document
 
-Description of Custom Flow Steps
+Download a pandadoc document.
 
-*MANUALLY ADD THE DOCUMENTATION OF THESE FLOW STEPS HERE...*
+<table>
+    <thead>
+    <tr>
+        <th>Label</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Visibility</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>File id</td>
+        <td>text</td>
+        <td>no</td>
+        <td> - </td>
+        <td>Always</td>
+        <td>
+            The id provided by Pandadoc Service.
+        </td>
+    </tr>
+    <tr>
+        <td>File Name</td>
+        <td>text</td>
+        <td>no</td>
+        <td> - </td>
+        <td>Always</td>
+        <td>
+            If provided, the file will be stored with this name.
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>response</td>
+        <td>object</td>
+        <td>
+            Object resulting from the response to the endpoint call.
+        </td>
+    </tr>
+    </tbody>
+</table>
 
 ### List Documents
 
-Description of Custom Flow Steps
+List all documents on your pandadoc account.
 
-*MANUALLY ADD THE DOCUMENTATION OF THESE FLOW STEPS HERE...*
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>response</td>
+        <td>object</td>
+        <td>
+            Object resulting from the response to the endpoint call.
+        </td>
+    </tr>
+    </tbody>
+</table>
 
 ### Send Document
 
-Description of Custom Flow Steps
+Move a document to sent status and send an optional email.
 
-*MANUALLY ADD THE DOCUMENTATION OF THESE FLOW STEPS HERE...*
+<table>
+    <thead>
+    <tr>
+        <th>Label</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Visibility</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>File id</td>
+        <td>text</td>
+        <td>no</td>
+        <td> - </td>
+        <td>Always</td>
+        <td>
+            The id provided by Pandadoc Service.
+        </td>
+    </tr>
+    <tr>
+        <td>Subject</td>
+        <td>text/email</td>
+        <td>no</td>
+        <td> - </td>
+        <td>Always</td>
+        <td>
+            Value that will be used as the email subject.
+        </td>
+    </tr>
+    <tr>
+        <td>Message</td>
+        <td>text</td>
+        <td>no</td>
+        <td> - </td>
+        <td>Always</td>
+        <td>
+            A message which will be sent by email with a link to a document to sign.
+        </td>
+    </tr>
+    <tr>
+        <td>Silent</td>
+        <td>boolean</td>
+        <td>no</td>
+        <td> false </td>
+        <td>Always</td>
+        <td>
+            Disables sent, viewed, comment and completed email notifications for document recipients and the document sender. By default, notifications emails are sent for specific actions. If set as true, it won't affect "Approve document" email notification sent to the Approver.
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>response</td>
+        <td>object</td>
+        <td>
+            Object resulting from the response to the endpoint call.
+        </td>
+    </tr>
+    </tbody>
+</table>
 
 
 </details>
