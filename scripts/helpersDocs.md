@@ -9,9 +9,9 @@ The Javascript API of the pandadoc endpoint has three pieces:
 ## HTTP requests
 You can make `GET`,`POST` requests to the [pandadoc API](API_URL_HERE) like this:
 ```javascript
-var response = app.endpoints.pandadoc.get('/documents/:documentId/download')
-var response = app.endpoints.pandadoc.post('/documents', body)
-var response = app.endpoints.pandadoc.post('/documents')
+var response = app.endpoints.pandadoc.get('/templates')
+var response = app.endpoints.pandadoc.post('/documents/:fileId', body)
+var response = app.endpoints.pandadoc.post('/documents/:fileId')
 ```
 
 Please take a look at the documentation of the [HTTP endpoint](https://github.com/slingr-stack/http-endpoint#javascript-api)
@@ -34,7 +34,7 @@ app.endpoints.pandadoc.documents.get()
 * API URL: '/documents/:documentId'
 * HTTP Method: 'GET'
 ```javascript
-app.endpoints.pandadoc.documents.get(documentId)
+app.endpoints.pandadoc.documents.get()
 ```
 ---
 * API URL: '/documents/:documentId/details'
