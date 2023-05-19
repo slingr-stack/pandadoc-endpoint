@@ -34,18 +34,18 @@ endpoint.documents.get = function(documentId, httpOptions) {
     var url;
     switch(httpOptions ? arguments.length - 1 : arguments.length){
         case 0:
-            url = parse('/documents');
-            break;
-        case 1:
-            url = parse('/documents/:documentId', [documentId]);
-            break;
-        default:
+			url = parse('/documents');
+			break;
+		case 1:
+			url = parse('/documents/:documentId', [documentId]);
+			break;
+		default:
             sys.logs.error('Invalid argument received.');
             return;
     }
     sys.logs.debug('[pandadoc] GET from: ' + url);
-    var options = checkHttpOptions(url, httpOptions);
-    return endpoint._get(options);
+	var options = checkHttpOptions(url, httpOptions);
+	return endpoint._get(options);
 };
 
 endpoint.documents.post = function(fileId, httpOptions) {
@@ -230,6 +230,25 @@ endpoint.utils.formatTimestamp = function(date) {
         + 'Z';
 };
 
+endpoint.utils.fromDateToTimestamp = function(params) {
+    if (!!params) {
+        return {timestamp: new Date(params).getTime()};
+    }
+    return null;
+};
+
+endpoint.utils.fromMillisToDate = function(params) {
+    if (!!params) {
+        var sdf = new Intl.DateTimeFormat('en-US', {
+            year: 'numeric', month: '2-digit', day: '2-digit',
+            hour: '2-digit', minute: '2-digit', second: '2-digit',
+            timeZone: 'UTC'
+        });
+        return {date: sdf.format(new Date(parseInt(params)))};
+    }
+    return null;
+};
+
 ///////////////////////
 //  Private helpers  //
 ///////////////////////
@@ -248,7 +267,7 @@ var mergeJSON = function (json1, json2) {
 
 var concatQuery = function (url, key, value) {
     return url + ((!url || url.indexOf('?') < 0) ? '?' : '&') + key + "=" + value;
-};
+}
 
 var checkHttpOptions = function (url, options) {
     options = options || {};
@@ -270,13 +289,13 @@ var checkHttpOptions = function (url, options) {
         }
     }
     return options;
-};
+}
 
 var isObject = function (obj) {
     return !!obj && stringType(obj) === '[object Object]'
-};
+}
 
-var stringType = Function.prototype.call.bind(Object.prototype.toString);
+var stringType = Function.prototype.call.bind(Object.prototype.toString)
 
 var parse = function (str) {
     try {

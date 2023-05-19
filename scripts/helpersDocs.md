@@ -9,7 +9,7 @@ The Javascript API of the pandadoc endpoint has three pieces:
 ## HTTP requests
 You can make `GET`,`POST` requests to the [pandadoc API](API_URL_HERE) like this:
 ```javascript
-var response = app.endpoints.pandadoc.get('/templates')
+var response = app.endpoints.pandadoc.get('/documents')
 var response = app.endpoints.pandadoc.post('/documents/:fileId', body)
 var response = app.endpoints.pandadoc.post('/documents/:fileId')
 ```
@@ -168,38 +168,6 @@ Generic flow step for full use of the entire endpoint and its services.
         <td>Always</td>
         <td>
             A payload of data can be sent to the server in the body of the request.
-        </td>
-    </tr>
-    <tr>
-        <td>Event</td>
-        <td>dropDown</td>
-        <td>no</td>
-        <td> - </td>
-        <td>Always</td>
-        <td>
-            Used to define event after the call. <br>
-            Possible values are: <br>
-            File Downloaded, Callback
-        </td>
-    </tr>
-    <tr>
-        <td>Callback data</td>
-        <td>textarea</td>
-        <td>no</td>
-        <td> - </td>
-        <td> Event is Callback </td>
-        <td>
-            This is an object you can send that you will get back when the function is processed.
-        </td>
-    </tr>
-    <tr>
-        <td>Callbacks</td>
-        <td>Script</td>
-        <td>no</td>
-        <td> - </td>
-        <td> Event is Callback </td>
-        <td>
-            This is a map where you can listen for different function
         </td>
     </tr>
     <tr>
