@@ -40,8 +40,7 @@ endpoint.documents.get = function(documentId, httpOptions) {
             url = parse('/documents/:documentId', [documentId]);
             break;
         default:
-            sys.logs.error('Invalid argument received.');
-            return;
+            throw new Error('Invalid argument received.');
     }
     sys.logs.debug('[pandadoc] GET from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -80,8 +79,7 @@ endpoint.documents.post = function(fileId, httpOptions) {
                 ]
             });
         default:
-            sys.logs.error('Invalid argument received.');
-            return;
+            throw new Error('Invalid argument received.');
     }
     sys.logs.debug('[pandadoc] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -90,8 +88,7 @@ endpoint.documents.post = function(fileId, httpOptions) {
 
 endpoint.documents.details.get = function(documentId, httpOptions) {
     if (!documentId) {
-        sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
-        return;
+        throw new Error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
     }
     var url = parse('/documents/:documentId/details', [documentId]);
     sys.logs.debug('[pandadoc] GET from: ' + url);
@@ -101,8 +98,7 @@ endpoint.documents.details.get = function(documentId, httpOptions) {
 
 endpoint.documents.send.post = function(documentId, httpOptions) {
     if (!documentId) {
-        sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
-        return;
+        throw new Error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
     }
     var url = parse('/documents/:documentId/send', [documentId]);
     sys.logs.debug('[pandadoc] POST from: ' + url);
@@ -112,8 +108,7 @@ endpoint.documents.send.post = function(documentId, httpOptions) {
 
 endpoint.documents.session.post = function(documentId, httpOptions) {
     if (!documentId) {
-        sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
-        return;
+        throw new Error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
     }
     var url = parse('/documents/:documentId/session', [documentId]);
     sys.logs.debug('[pandadoc] POST from: ' + url);
@@ -125,8 +120,7 @@ endpoint.documents.session.post = function(documentId, httpOptions) {
 
 endpoint.documents.download.get = function(documentId, httpOptions) {
     if (!documentId) {
-        sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
-        return;
+        throw new Error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
     }
     var url = parse('/documents/:documentId/download', [documentId]);
     sys.logs.debug('[pandadoc] GET from: ' + url);
@@ -151,8 +145,7 @@ endpoint.templates.get = function(httpOptions) {
 
 endpoint.templates.details.get = function(templateId, httpOptions) {
     if (!templateId) {
-        sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [templateId].');
-        return;
+        throw new Error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [templateId].');
     }
     var url = parse('/templates/:templateId/details', [templateId]);
     sys.logs.debug('[pandadoc] GET from: ' + url);
