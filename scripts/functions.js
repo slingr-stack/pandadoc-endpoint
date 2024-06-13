@@ -118,15 +118,19 @@ endpoint.documents.session.post = function(documentId, httpOptions) {
     return res;
 };
 
-endpoint.documents.download.get = function(documentId, httpOptions) {
+endpoint.documents.download.get = function(documentId, fileName) {
     if (!documentId) {
         throw new Error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [documentId].');
     }
     var url = parse('/documents/:documentId/download', [documentId]);
     sys.logs.debug('[pandadoc] GET from: ' + url);
-
+    if (fileName) {
+        if (!fileName.contains(".pdf")) {
+            fileName = fileName + ".pdf";
+        }
+    }
     var httpOptions = {
-        path:url,
+        path: url,
         forceDownload: true,
         downloadSync: true,
         fileName: fileName || 'document.pdf'
