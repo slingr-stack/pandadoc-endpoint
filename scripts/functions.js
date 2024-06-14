@@ -125,7 +125,7 @@ endpoint.documents.download.get = function(documentId, fileName) {
     var url = parse('/documents/:documentId/download', [documentId]);
     sys.logs.debug('[pandadoc] GET from: ' + url);
     if (fileName) {
-        if (!fileName.contains(".pdf")) {
+        if (!fileName.includes(".pdf")) {
             fileName = fileName + ".pdf";
         }
     }
